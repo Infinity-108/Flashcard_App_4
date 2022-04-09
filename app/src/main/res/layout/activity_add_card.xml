@@ -4,7 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#9fc5e8"
     tools:context=".AddCardActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="EDIT PAGE"
+        android:textSize="40sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.150"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/cancel_button"
@@ -18,34 +34,59 @@
         app:layout_constraintRight_toRightOf="parent" />
 
 
-    <EditText
-        android:id="@+id/question_edittext"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:hint="Enter the question here"
-        android:textSize="25sp"
-        android:inputType="textMultiLine"
-        android:layout_margin="30dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintVertical_bias="0.321"
+        android:background="#9fc5e8">
+        <EditText
+            android:id="@+id/question_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Enter the question here"
+            android:textSize="25sp"
+            android:inputType="textMultiLine"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.121" />
 
-    <EditText
-        android:id="@+id/answer_edittext"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/answer1_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:hint="Enter the answer here"
-        android:textSize="25sp"
-        android:inputType="textMultiLine"
-        android:layout_margin="30dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintVertical_bias="0.542"
+        android:background="#9fc5e8">
+        <EditText
+            android:id="@+id/answer_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Enter the answer here"
+            android:textSize="25sp"
+            android:inputType="textMultiLine"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.442" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/save_button"

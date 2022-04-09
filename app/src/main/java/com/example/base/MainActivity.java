@@ -6,6 +6,7 @@ import androidx.vectordrawable.graphics.drawable.AnimationUtilsCompat;
 import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.style.QuoteSpan;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -19,10 +20,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Animation from_left = AnimationUtils.loadAnimation(this,R.anim.left_out);
-    //Animation from_right = AnimationUtils.loadAnimation(this,R.anim.right_in);
 
-
+    CountDownTimer countDownTimer;
 
     //this variable keeps track of the index of the current card that we want to display.
     int currentCardDisplayedIndex = 0;
@@ -30,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
 
 
 
@@ -59,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivityForResult(intent,100);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
 
-               // Intent new_intent = new Intent(MainActivity.this, AddCardActivity.class);
-                //startActivity(new_intent);
-                //overridePendingTransition(R.anim.right_in, R.anim.left_out);
 
             }
         });
@@ -69,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (allFlashcards.size() == 0)
                     return;
 
@@ -113,6 +113,14 @@ public class MainActivity extends AppCompatActivity {
 
                         Answer.setVisibility(View.INVISIBLE);
                         Question.setVisibility(View.VISIBLE);
+
+
+
+
+
+
+
+
                     }
 
                     @Override

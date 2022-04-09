@@ -3,14 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/purple_200"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    
 
     <TextView
         android:id="@+id/question_textview"
         android:layout_width="match_parent"
+        android:background="@drawable/flashcard_background"
         android:layout_height="200dp"
-        android:layout_margin="30dp"
+        android:paddingTop="30dp"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:text="Why is Ugonna an amazing Human Being?"
         android:textSize="40sp"
         android:layout_centerHorizontal="true"
@@ -20,17 +28,22 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintVertical_bias="0.18" />
 
 
 
     <TextView
         android:id="@+id/answer_textview"
+        android:background="@drawable/flashcard_background"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:text="Because she is"
         android:textSize="40sp"
-        android:layout_margin="30dp"
+        android:paddingTop="20dp"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:visibility="invisible"
@@ -39,7 +52,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120" />
+        app:layout_constraintVertical_bias="0.180" />
 
 
     <ImageView
@@ -63,7 +76,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHorizontal_bias="0.951"
-        app:layout_constraintVertical_bias="0.400"
+        app:layout_constraintVertical_bias="0.610"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
