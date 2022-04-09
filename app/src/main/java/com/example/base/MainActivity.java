@@ -1,10 +1,13 @@
 package com.example.base;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.vectordrawable.graphics.drawable.AnimationUtilsCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -13,12 +16,19 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Animation from_left = AnimationUtils.loadAnimation(this,R.anim.left_out);
+    //Animation from_right = AnimationUtils.loadAnimation(this,R.anim.right_in);
+
+
+
     //this variable keeps track of the index of the current card that we want to display.
     int currentCardDisplayedIndex = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         TextView Question = findViewById(R.id.question_textview);
         TextView Answer = findViewById(R.id.answer_textview);
@@ -41,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                 MainActivity.this.startActivityForResult(intent,100);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+
+               // Intent new_intent = new Intent(MainActivity.this, AddCardActivity.class);
+                //startActivity(new_intent);
+                //overridePendingTransition(R.anim.right_in, R.anim.left_out);
+
             }
         });
 
