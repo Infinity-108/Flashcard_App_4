@@ -3,9 +3,12 @@ package com.example.base;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.vectordrawable.graphics.drawable.AnimationUtilsCompat;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.style.QuoteSpan;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         TextView Question = findViewById(R.id.question_textview);
         TextView Answer = findViewById(R.id.answer_textview);
+
+
+
 
         //initializing the flashcardDatabase variable
         flashcardDatabase = new FlashcardDatabase(getApplicationContext());
@@ -62,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 if (allFlashcards.size() == 0)
                     return;
 
@@ -74,15 +80,52 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 allFlashcards = flashcardDatabase.getAllCards();
-                Flashcard flashcard = allFlashcards.get(currentCardDisplayedIndex);
+
+
+                //Beginning of animation shenanigans
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.left_out);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.right_in);
+
+                leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        // this method is called when the animation first starts
+                       // Question.startAnimation(leftOutAnim);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        // this method is called when the animation is finished playing
+
+                        Answer.setVisibility(View.INVISIBLE);
+                        Question.startAnimation(rightInAnim);
+                        Answer.setVisibility(View.INVISIBLE);
 
 
 
-                Answer.setText(flashcard.getAnswer());
-                Question.setText(flashcard.getQuestion());
+                        //moved former logic here
+                        Flashcard flashcard = allFlashcards.get(currentCardDisplayedIndex);
 
+
+
+                        Answer.setText(flashcard.getAnswer());
+                        Question.setText(flashcard.getQuestion());
+
+                        Answer.setVisibility(View.INVISIBLE);
+                        Question.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        // we don't need to worry about this method
+                    }
+                });
+
+                Question.startAnimation(leftOutAnim);
                 Answer.setVisibility(View.INVISIBLE);
-                Question.setVisibility(View.VISIBLE);
+
+
+
 
 
             }
@@ -94,8 +137,24 @@ public class MainActivity extends AppCompatActivity {
         Question.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
+
+                // get the center for the clipping circle
+                int cx = Answer.getWidth() / 2;
+                int cy = Answer.getHeight() / 2;
+
+                // get the final radius for the clipping circle
+                float finalRadius = (float) Math.hypot(cx, cy);
+
+                // create the animator for this view (the start radius is zero)
+                Animator anim = ViewAnimationUtils.createCircularReveal(Answer, cx, cy, 0f, finalRadius);
+
+                // hide the question and show the answer to prepare for playing the animation!
                 Question.setVisibility(View.INVISIBLE);
                 Answer.setVisibility(View.VISIBLE);
+
+                anim.setDuration(800);
+                anim.start();
             }
         });
 
@@ -104,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Answer.setVisibility(View.INVISIBLE);
                 Question.setVisibility(View.VISIBLE);
+
             }
         });
 
